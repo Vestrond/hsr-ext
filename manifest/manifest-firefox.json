@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "HSR-Ext",
+  "version": "1.0",
+  "description": "This powerful and intuitive extension effortlessly captures detailed information from the official website displaying your beloved game characters. It seamlessly copies the data at the precise moment when you are viewing your character. Users can later view the character information through the extension and conveniently download the data as a single file for further use.",
+  "homepage_url": "https://github.com/Vestrond/hsr-ext",
+  "icons": {
+    "48": "icons/crystal-48.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "32": "icons/crystal-32.png",
+      "48": "icons/crystal-48.png"
+    },
+    "default_title": "HSR-Ext",
+    "default_popup": "popup/popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://act.hoyolab.com/app/community-game-records-sea/rpg/*"],
+      "js": ["hsr-ext.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

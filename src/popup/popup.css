@@ -1,0 +1,637 @@
+html,
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    width: 500px;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+
+div {
+    cursor: default;
+}
+
+#message {
+    display: none;
+    color: white;
+}
+
+.brand {
+    font-weight: bold;
+    color: #ffc870;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    column-gap: 2px;
+    margin-top: 8px;
+    padding: 4px;
+    height: 24px;
+    background: #0b0b0b;
+}
+
+.header .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    height: 24px;
+    width: 100%;
+    border: 1px solid black;
+    background: #1c1b39;
+    color: white;
+
+    transition: background-color ease-in-out 0.1s;
+}
+
+.button#goHome {
+    column-gap: 4px;
+}
+
+.header .button:hover {
+    background: #1b7cda;
+}
+
+.header .button:active {
+    background: darkgreen;
+}
+
+.header .button:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.header .button:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    border: none;
+    width: 100%;
+    margin: 3% auto;
+    padding: 4px;
+    text-align: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    background-color: #e5f2f2;
+}
+
+button:hover {
+    background-color: #cff2f2;
+}
+
+button[type="reset"] {
+    background-color: #fbfbc9;
+}
+
+button[type="reset"]:hover {
+    background-color: #eaea9d;
+}
+
+.servers {
+    display: flex;
+    padding: 4px;
+    flex-direction: column;
+}
+
+.servers > .serversNames {
+    display: flex;
+    column-gap: 2px;
+}
+
+.servers > .serversNames > .serverName {
+    cursor: pointer;
+    width: fit-content;
+    padding: 4px;
+    margin: 0 8px;
+    z-index: 2;
+    font-size: 12px;
+    border-top: 1px solid royalblue;
+    border-left: 1px solid royalblue;
+    border-right: 1px solid royalblue;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: #1c1b39;
+    color: white;
+}
+
+.servers > .serversNames > .serverName:hover {
+    background: linear-gradient(#313054 80%, #1c1b39 100%);
+}
+
+.servers > .serversNames > .serverName.selected {
+    margin-bottom: -1px;
+}
+
+.serversContent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    padding: 16px;
+    background: #1c1b39;
+    border: 1px solid royalblue;
+    border-radius: 8px;
+}
+
+.serverContent {
+    display: none;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.serverContent.selected {
+    display: flex;
+}
+
+.serverContentData {
+    color: white;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}
+
+.avatarContainer {
+    display: flex;
+}
+
+.avatar {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.account .avatar {
+    background: #898374;
+    width: 48px;
+    height: 48px;
+}
+
+.account .serverName {
+    color: white;
+    font-size: 12px;
+}
+
+.accountRows {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.accountRow {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.nickname {
+    font-weight: bold;
+    color: white;
+}
+
+.uid {
+    font-size: 12px;
+    color: white;
+}
+
+.uid::before {
+    content: "UID";
+}
+
+/*.uid::after {*/
+/*    content: ")";*/
+/*}*/
+.lvl {
+    padding: 0 4px;
+    font-size: 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    background: #ecb163;
+}
+
+.lvl::before {
+    content: "Lv: ";
+}
+
+
+.characterLine {
+    padding: 8px;
+    background: #313054;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.characterInfo {
+    padding: 4px;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.characterMainInfo {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}
+
+.characterInfo.rarity-4 {
+    border: 2px outset mediumpurple;
+    background: linear-gradient(
+            135deg,
+            #755085 25%,
+            #ac66de 50%,
+            #755085 75%
+    ) fixed;
+}
+
+.characterInfo.rarity-5 {
+    border: 2px outset #ce8f2a;
+    background: linear-gradient(
+            135deg,
+            #b45b18 25%,
+            #ce8f2a 50%,
+            #b45b18 75%
+    ) fixed;
+}
+
+.characterCone {
+    font-size: 10px;
+    color: white;
+}
+
+.coneInfo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}
+
+.coneNameBlock {
+    height: 12px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.coneName {
+    height: 12px;
+    width: fit-content;
+    max-width: 84px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    padding: 1px 3px 1px 4px;
+}
+
+.coneRank {
+    height: 12px;
+    display: flex;
+    align-items: center;
+    font-family: "Times New Roman", sans-serif;
+    padding: 1px 6px 1px 6px;
+    background: black;
+    color: white;
+}
+
+.coneInfo.rarity-3 .coneNameBlock {
+    background: #1b7cda;
+}
+
+.coneInfo.rarity-4 .coneNameBlock {
+    background: rebeccapurple;
+}
+
+.coneInfo.rarity-5 .coneNameBlock {
+    background: orangered;
+}
+
+.coneMainInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 28px;
+}
+
+.coneLvl {
+    margin-right: 4px;
+}
+
+.coneImg {
+    position: absolute;
+    right: -14px;
+    height: 48px;
+    width: 48px;
+    z-index: 10;
+    background: radial-gradient(transparent, transparent, transparent, transparent, transparent);
+
+    transition:
+            width ease-in-out 0.2s,
+            height ease-in-out 0.2s,
+            background-color ease-in-out 0.2s;
+}
+.coneImg:hover {
+    height: 128px;
+    width: 128px;
+    background: radial-gradient(transparent, transparent, white, transparent, transparent);
+}
+
+.characterName {
+    font-weight: bold;
+    color: white;
+}
+
+.characterLvl {
+    display: flex;
+    align-items: center;
+    background: #e2cea7;
+    padding: 1px;
+    font-size: 10px;
+}
+
+.characterLvl::before {
+    content: "Lv: ";
+}
+
+/*.characterLvl::after {*/
+/*    content: "";*/
+/*}*/
+.characterData {
+    display: flex;
+    /*flex: 1;*/
+    column-gap: 4px;
+    padding: 4px;
+}
+
+.rarity-4 .avatar {
+    background: linear-gradient(#4b4574, mediumpurple);
+}
+
+.rarity-5 .avatar {
+    background: linear-gradient(#ab6b59, orange);
+}
+
+.characteristics {
+    /*width: 50%;*/
+    flex: 1;
+}
+
+.characteristic {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 4px;
+    font-size: 10px;
+    color: #cbcbcb;
+}
+
+.highlight {
+    color: #ffc870;
+}
+
+.characteristic:nth-child(2n) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.characteristic .characteristicIcon {
+    height: 12px;
+    width: 12px;
+}
+
+.characteristic .name {
+    display: flex;
+    align-items: center;
+    column-gap: 2px;
+}
+
+.characteristicValues {
+    display: flex;
+    column-gap: 8px;
+}
+
+/*.characteristicValues .value {*/
+/*    color: #cbcbcb;*/
+/*}*/
+
+.characteristicValues .additionalValue {
+    color: lightblue;
+}
+
+.characteristicValues .additionalValue::before {
+    content: "+";
+}
+
+.characteristicValues .sumValue {
+    font-weight: bold;
+}
+
+.relics {
+    /*width: 50%;*/
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.relic {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border: 2px outset darkgrey;
+    border-radius: 8px;
+    font-size: 7px;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    overflow: hidden;
+}
+
+.relicInfo {
+    padding-left: 2px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    column-gap: 1px;
+    height: 14px;
+}
+
+.rarity-3 .relicInfo {
+    background: dodgerblue;
+}
+
+.rarity-4 .relicInfo {
+    background: mediumpurple;
+}
+
+.rarity-5 .relicInfo {
+    background: orange;
+}
+
+.relicStats {
+}
+
+.relicStat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2px;
+}
+
+.relicStat:nth-child(2n) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.relicStatIcon {
+    height: 8px;
+    width: 8px;
+}
+
+.relicStatMultiplier {
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.relicSlot {
+    padding: 1px 2px;
+    background: rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.relicLvl {
+    padding: 1px 2px;
+    background: black;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.relicLvl::before {
+    content: '+';
+}
+
+.relicImage {
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.emptyRelic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: darkgrey;
+}
+
+.rarity-3.relic {
+    border-color: dodgerblue;
+}
+
+.rarity-4.relic {
+    border-color: mediumpurple;
+}
+
+.rarity-5.relic {
+    border-color: orange;
+}
+
+.battleInfo {
+    display: flex;
+    column-gap: 2px;
+}
+
+.progressInfo {
+    display: flex;
+    column-gap: 1px;
+}
+
+.battleInfoIcon {
+    height: 12px;
+    width: 12px;
+    padding: 1px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+}
+
+.battleTextIcon, .battleTextIconExt {
+    height: 12px;
+    width: 12px;
+    font-size: 9px;
+    text-align: center;
+    padding: 1px;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+}
+
+.battleTextIconExt {
+    padding: 1px 3px;
+    width: auto;
+}
+
+.progressInfo > div {
+    padding: 1px 3px;
+    border-radius: 0;
+}
+
+.progressInfo > div:first-child {
+    border-radius: 6px 0 0 6px;
+}
+
+.progressInfo > div:last-child {
+    border-radius: 0 6px 6px 0;
+}
+
+.hor, .hor-2, .hor-4, .hor-8, .hor-16 {
+    display: flex;
+}
+
+.vert, .vert-2, .vert-4, .vert-8. .vert-16 {
+    display: flex;
+    flex-direction: column;
+}
+
+.hor-2, .vert-2 {
+    gap: 2px;
+}
+
+.hor-4, .vert-4 {
+    gap: 4px;
+}
+
+.hor-8, .vert-8 {
+    gap: 8px;
+}
+
+.hor-16, .vert-16 {
+    gap: 16px;
+}
+
+.eidolon {
+    height: 12px;
+    width: 12px;
+}

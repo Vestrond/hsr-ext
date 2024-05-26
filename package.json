@@ -1,0 +1,11 @@
+{
+  "name": "hsr-ext",
+  "version": "1.0.0",
+  "main": "build.js",
+  "author": "Vestrond",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "node build.js"
+  }
+}
