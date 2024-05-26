@@ -1,6 +1,9 @@
 # HSR-Ext
 
-**HSR-Ext** is a powerful and intuitive browser extension that captures detailed information from the official website displaying your beloved game characters. It seamlessly copies the data at the precise moment when you are viewing your character. Users can later view the character information through the extension and conveniently download the data as a single file for further use. Curren
+**HSR-Ext** is a powerful and intuitive browser extension that captures detailed information from the official website displaying your beloved game characters. 
+It seamlessly copies the data at the precise moment when you are viewing your character. 
+Users can later view the character information through the extension and conveniently download the data as a single file for further use.
+The format of the saved files is identical to the format described in the repository HSR-Scanner (https://github.com/kel-z/HSR-Scanner).
 
 
 ## Important Notice
