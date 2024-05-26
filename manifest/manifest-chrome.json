@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "HSR-Ext",
   "version": "1.0",
-  "description": "This powerful and intuitive extension effortlessly captures detailed information from the official website displaying your beloved game characters. It seamlessly copies the data at the precise moment when you are viewing your character. Users can later view the character information through the extension and conveniently download the data as a single file for further use.",
+  "description": "Extension captures information while browsing the official website for viewing characters info and load dumps.",
   "homepage_url": "https://github.com/Vestrond/hsr-ext",
   "icons": {
     "48": "icons/crystal-48.png"

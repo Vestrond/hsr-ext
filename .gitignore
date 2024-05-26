@@ -153,3 +153,5 @@ fabric.properties
 build
 tmp
 .idea
+node_modules
+package-lock.json
