@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 a {
     text-decoration: none;
 }
@@ -344,11 +345,11 @@ button[type="reset"]:hover {
     z-index: 10;
     background: radial-gradient(transparent, transparent, transparent, transparent, transparent);
 
-    transition:
-            width ease-in-out 0.2s,
-            height ease-in-out 0.2s,
-            background-color ease-in-out 0.2s;
+    transition: width ease-in-out 0.2s,
+    height ease-in-out 0.2s,
+    background-color ease-in-out 0.2s;
 }
+
 .coneImg:hover {
     height: 128px;
     width: 128px;
@@ -498,6 +499,24 @@ button[type="reset"]:hover {
     justify-content: space-between;
     padding: 0 2px;
 }
+
+.relicStat:first-child {
+    font-size: 8px;
+    margin-bottom: 2px;
+}
+
+.rarity-3 .relicStat:first-child {
+    background: #1E90FF55;
+}
+
+.rarity-4 .relicStat:first-child {
+    background: #9370DB55;
+}
+
+.rarity-5 .relicStat:first-child {
+    background: #FFA50055;
+}
+
 
 .relicStat:nth-child(2n) {
     background: rgba(255, 255, 255, 0.1);

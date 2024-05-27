@@ -8,7 +8,7 @@
   "scripts": {
     "build": "node build.js"
   },
-  "description": "This extension captures information from the official website displaying game characters. It copies the data at the moment when the user is viewing their character. Users can later view the character information through the extension and download the data as a single file for further use.",
+  "description": "Browser extension captures information while browsing the official website for viewing characters info and load dumps.",
   "keywords": [],
   "dependencies": {
     "archiver": "^7.0.1"

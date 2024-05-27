@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "HSR-Ext",
   "version": "1.0",
-  "description": "Extension captures information while browsing the official website for viewing characters info and load dumps.",
+  "description": "Browser extension captures information while browsing the official website for viewing characters info and load dumps.",
   "homepage_url": "https://github.com/Vestrond/hsr-ext",
   "icons": {
     "48": "icons/crystal-48.png"

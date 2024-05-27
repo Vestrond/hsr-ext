@@ -26,8 +26,8 @@ Note: The current codebase was developed hastily and may not adhere to best prac
 
 **HSR-Ext** can be installed from the respective browser stores:
 
-* **Chrome Web Store**: Install HSR-Ext for Chrome (link will be provided after publication)
-* **Firefox Add-ons**: Install HSR-Ext for Firefox (link will be provided after publication)
+* **Chrome Web Store**: Install HSR-Ext for [Chrome](https://chromewebstore.google.com/detail/hsr-ext/jickmofgechkbkjhhejdkgkbggifjcga)
+* **Firefox Add-ons**: Install HSR-Ext for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/hsr-ext/)
 
 ## Usage
 
