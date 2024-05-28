@@ -7,6 +7,7 @@ function aBrowser() {
         return undefined;
     }
 }
+
 function storageGet(key) {
     if (typeof browser !== 'undefined') {
         return browser.storage.local.get(key);
@@ -16,9 +17,11 @@ function storageGet(key) {
         return undefined;
     }
 }
+
 function s(text) {
-    return String(text).replace(/[^a-zA-Z0-9 %.\-'!?,:()]/g, "");
+    return String(text).replace(/[^\p{L}0-9 %.\-'!?,:()]/gu, "");
 }
+
 function n(num) {
     return Number(num);
 }
@@ -42,7 +45,7 @@ async function executor(path) {
         return browser.tabs.executeScript({file: path});
     } else if (typeof chrome !== 'undefined') {
         return chrome.scripting.executeScript({
-            target : {tabId : await getChromeTabID(), allFrames : true},
+            target: {tabId: await getChromeTabID(), allFrames: true},
             files: [path],
         });
     } else {
@@ -51,7 +54,19 @@ async function executor(path) {
 }
 
 function setMessage() {
-    document.getElementById('message').textContent = JSON.stringify([...arguments], null, 2);
+    try {
+        document.getElementById('message').textContent = JSON.stringify([...arguments], null, 2);
+    } catch (e) {
+        document.getElementById('message').textContent = 'Cannot set message';
+    }
+}
+
+function setDataMessage() {
+    try {
+        document.getElementById('data').textContent = JSON.stringify([...arguments], null, 2);
+    } catch (e) {
+        document.getElementById('data').textContent = 'Cannot set message';
+    }
 }
 
 function CopyToClipboard(value) {
@@ -192,6 +207,84 @@ function accountInfoAsHTML(serverName, data) {
 `;
 }
 
+const allAttrs = ['wind', 'ice', 'fire', 'quantum', 'lightning', 'imaginary', 'physical'];
+const allPaths = ['destruction', 'erudition', 'harmony', 'hunt', 'nihility', 'preservation', 'abundance'];
+
+function sortsHTML() {
+    function selectedAdder(sortId) {
+        if (window.sortSettings === sortId) return ' selected';
+        else return '';
+    }
+
+    return `
+<div class="sorts">
+    <div class="sortsLine">
+        <div class="sortItem${selectedAdder('az')}" id="az">A - Z</div>
+        —
+        <div class="sortItem${selectedAdder('za')}" id="za">Z - A</div>
+    </div>
+    <div class="sortsLine">
+        <div class="sortItem${selectedAdder('lvlDown')}" id="lvlDown">80 - 1</div>
+        —
+        <div class="sortItem${selectedAdder('lvlUp')}" id="lvlUp">1 - 80</div>
+    </div>
+    <div class="sortsLine">
+        <div class="sortItem${selectedAdder('starDown')}" id="starDown">5★ - 4★</div>
+        —
+        <div class="sortItem${selectedAdder('starUp')}" id="starUp">4★ - 5★</div>
+    </div>
+</div>
+`;
+}
+
+function filtersHTML() {
+    const attributesBlocks = [];
+    for (const attr of allAttrs) {
+        const attrClasses = ['attributeBlock'];
+        if (window.filters.attributes.includes(attr)) {
+            attrClasses.push('selected');
+        }
+        attributesBlocks.push(`
+            <div role="button" id="filter-attribute-${attr}" class="${attrClasses.join(' ')}" title="${attr}">
+                <img class="icon" src="/icons/attribute/${attr}.png" alt="attr" />
+            </div>
+        `);
+    }
+
+    const pathsBlocks = [];
+    for (const path of allPaths) {
+        const pathClasses = ['pathBlock'];
+        if (window.filters.paths.includes(path)) {
+            pathClasses.push('selected');
+        }
+        pathsBlocks.push(`
+            <div role="button" id="filter-path-${path}" class="${pathClasses.join(' ')}" title="${path}">
+                <img class="icon" src="/icons/path/${path}.png" alt="path" />
+            </div>
+        `);
+    }
+
+    function selectedStarFilter(elemId) {
+        if (window.filters.rarity.includes(elemId)) return ' selected';
+        return '';
+    }
+
+    return `
+<div class="filters">
+    <div class="attributesFilters">${attributesBlocks.join('')}</div>
+    <div class="pathsFilters">${pathsBlocks.join('')}</div>
+    <div class="rarityFilters">
+        <div class="rarityFilterItem${selectedStarFilter('4s')}" id="4s">
+            4<span class="rarityStar">★</span>
+        </div>
+        <div class="rarityFilterItem${selectedStarFilter('5s')}" id="5s">
+            5<span class="rarityStar">★</span>
+        </div>
+    </div>
+</div>
+`;
+}
+
 function coneAsHTML(data) {
     if (data === undefined) {
         return 'No cone'
@@ -263,6 +356,7 @@ function characterAsHtml(charName, data) {
         if (name === 'Link Rope') return 'Rope';
         return name;
     }
+
     function shortParam(name) {
         if (name === 'CRIT Rate') return 'CR';
         if (name === 'CRIT DMG') return 'CD';
@@ -275,7 +369,7 @@ function characterAsHtml(charName, data) {
         return name;
     }
 
-    function prepareStat(stat, isMain=false) {
+    function prepareStat(stat, isMain = false) {
         const relicClasses = ['relicStat'];
         if (stat.hasPriority) {
             relicClasses.push('highlight');
@@ -459,8 +553,8 @@ function changeServer(event) {
 
 function rerender() {
     storageGet('hsr-ext').then((rawData) => {
-        setMessage(rawData);
-        const data = rawData['hsr-ext'];
+        setDataMessage(rawData);
+        const data = rawData['hsr-ext'] || {};
         if (Object.keys(data).length === 0 || Object.keys(data.servers).length === 0) {
             document.getElementById('popup-content').innerHTML = 'No data found';
             return;
@@ -475,10 +569,47 @@ function rerender() {
 
             const startLine = accountInfoAsHTML(serverName, serverData);
             innerLines.push(startLine);
+            const sortsBlock = sortsHTML();
+            const filterBlock = filtersHTML();
+            innerLines.push(`
+<div class="listSettings">
+    ${sortsBlock}${filterBlock}
+    <div class="clearListSettings">∅</div>
+</div>
+`);
 
-            for (const [charName, charData] of Object.entries(serverData.characters)) {
-                const innerLine = characterAsHtml(charName, charData);
-                innerLines.push(innerLine);
+            const characters = Object.entries(serverData.characters);
+            if (window.sortSettings !== undefined) {
+                characters.sort(([aName, aData], [bName, bData]) => {
+                    if (window.sortSettings === 'az') return aName.localeCompare(bName);
+                    if (window.sortSettings === 'za')  return bName.localeCompare(aName);
+                    if (window.sortSettings === 'lvlDown') return bData.lvl - aData.lvl;
+                    if (window.sortSettings === 'lvlUp') return aData.lvl - bData.lvl;
+                    if (window.sortSettings === 'starDown') return bData.rarity - aData.rarity;
+                    if (window.sortSettings === 'starUp') return aData.rarity - bData.rarity;
+                });
+            }
+
+            for (const [charName, charData] of characters) {
+                if (
+                    (window.filters.attributes.length > 0 && !window.filters.attributes.includes(charData.attribute))
+                    || (window.filters.paths.length > 0 && !window.filters.paths.includes(charData.path))
+                    || (window.filters.rarity.length > 0 && !window.filters.rarity.includes(`${charData.rarity}s`))
+                ) {
+                    continue;
+                }
+
+                if (serverName in window.cache && charName in window.cache[serverName]) {
+                    innerLines.push(window.cache[serverName][charName]);
+                } else {
+                    const innerLine = characterAsHtml(charName, charData);
+                    if (serverName in window.cache) {
+                        window.cache[serverName][charName] = innerLine;
+                    } else {
+                        window.cache[serverName] = {[charName]: innerLine};
+                    }
+                    innerLines.push(innerLine);
+                }
             }
 
             strContent[serverName] = innerLines.join('');
@@ -487,6 +618,7 @@ function rerender() {
         const serversData = serverAsHTML(Object.keys(data.servers), currentServer, strContent);
         // setMessage('3', serversData);
         document.getElementById('popup-content').innerHTML = serversData;
+        linkFilters();
 
         setTimeout(() => {
             const serverLabelSelector = '.serversNames > .serverName';
@@ -497,7 +629,63 @@ function rerender() {
         // document.getElementById('popup-content').textContent = JSON.stringify(data, null, 2);
     }).catch(error => {
         console.error('Error retrieving label texts:', error);
+        setMessage('Error retrieving label texts:', error.message);
     });
+}
+
+function linkFilters() {
+    for (const item of document.querySelectorAll('.sortItem')) {
+        item.onclick = (e) => {
+            if (window.sortSettings === e.target.id) {
+                window.sortSettings = undefined;
+            } else {
+                window.sortSettings = e.target.id;
+            }
+            rerender();
+        };
+    }
+    for (const item of document.querySelectorAll('.rarityFilters > .rarityFilterItem')) {
+        item.onclick = (e) => {
+            let target = e.target;
+            if (e.target.tagName === 'SPAN') {
+                target = e.target.parentNode;
+            }
+
+            const rarity = target.id;
+            if (window.filters.rarity.includes(rarity)) {
+                window.filters.rarity = window.filters.rarity.filter(r => r !== rarity);
+            } else {
+                window.filters.rarity.push(rarity);
+            }
+            rerender();
+        };
+    }
+
+    document.querySelector('.clearListSettings').onclick = (e) => {
+        resetSettings();
+        rerender();
+    };
+
+    for (const attr of allAttrs) {
+        document.getElementById(`filter-attribute-${attr}`).onclick = (e) => {
+            if (window.filters.attributes.includes(attr)) {
+                window.filters.attributes = window.filters.attributes.filter(a => a !== attr);
+            } else {
+                window.filters.attributes.push(attr);
+            }
+            rerender();
+        };
+    }
+    for (const path of allPaths) {
+        document.getElementById(`filter-path-${path}`).onclick = (e) => {
+            if (window.filters.paths.includes(path)) {
+                window.filters.paths = window.filters.paths.filter(p => p !== path);
+            } else {
+                window.filters.paths.push(path);
+            }
+            rerender();
+        };
+    }
 }
 
 function listenForClicks() {
@@ -509,14 +697,24 @@ function listenForClicks() {
 }
 
 function reportExecuteScriptError(error) {
-    console.error(error);
+    setMessage(error.message);
 }
-//
-// aBrowser().tabs
-//     .executeScript({file: "/script/main.js"})
-//     .then(listenForClicks)
-//     .catch(reportExecuteScriptError);
-debugger;
+
+function resetSettings() {
+    window.filters = {
+        attributes: [],
+        paths: [],
+        rarity: [],
+        // lvl: {
+        //     a: 0,
+        //     b: 80,
+        // },
+    };
+    window.sortSettings = undefined;
+}
+
+resetSettings();
+window.cache = {};
 executor('/script/main.js')
     .then(listenForClicks)
     .catch(reportExecuteScriptError);

@@ -18,16 +18,50 @@ function storageGet(key) {
     }
 }
 
+// [...document.querySelectorAll('.c-hrdr-title > span')].map(e => e.textContent.trim()).join('\n')
+// TODO: Add translations
+// const translator = {
+//     relics: {
+//         'Head': ["Head", "Голова", "Kopf", "머리", "Cabeza", "Tête", "Cabeça", "头部", "頭部"],
+//         'Hands': ["Hands", "Руки", "Hände", "핸드", "Manos", "Mains", "Mãos", "手部", "手部"],
+//         'Body': ["Body", "Тело", "Körper", "바디", "Torso", "Corps", "Corpo", "躯干", "軀幹"],
+//         'Feet': ["Feet", "Ноги", "Füße", "신발", "Piernas", "Pieds", "Pés", "脚部", "腳部"],
+//         'Planar Sphere': ["Planar Sphere", "Планарная сфера", "Planarsphäre", "차원 구체", "Esfera de plano", "Sphère planaire", "Esfera Plana", "位面球", "次元球"],
+//         'Link Rope': ["Link Rope", "Соединительная верёвка", "Verbindungsseil", "연결 매듭", "Cuerda de unión", "Corde de liaison", "Corda de Ligação", "连结绳", "連結繩"],
+//     },
+//     cones: {},
+//     stats: {
+//         'HP': ['HP'],
+//         'DEF': ['DEF'],
+//         'ATK': ['ATK'],
+//         'SPD': ['SPD'],
+//         'CRIT Rate': ['CRIT Rate'],
+//         'CRIT DMG': ['CRIT DMG'],
+//         'Fire DMG Boost': ['Fire DMG Boost'],
+//         'Lightning DMG Boost': ['Lightning DMG Boost'],
+//         'Wind DMG Boost': ['Wind DMG Boost'],
+//         'Physical DMG Boost': ['Physical DMG Boost'],
+//         'Imaginary DMG Boost': ['Imaginary DMG Boost'],
+//         'Ice DMG Boost': ['Ice DMG Boost'],
+//         'Quantum DMG Boost': ['Quantum DMG Boost'],
+//         'Break Effect': ['Break Effect'],
+//         'Outgoing Healing Boost': ['Outgoing Healing Boost'],
+//         'Energy Regeneration Rate': ['Energy Regeneration Rate'],
+//         'Effect Hit Rate': ['Effect Hit Rate'],
+//         'Effect RES': ['Effect RES'],
+//     },
+// }
+
 function getTrailblazer() {
     const trailblazerMap = {
         // Caelus
-        '02eea7ac314d20d84540a77d6fe2825e': {name: 'Caelus', path: 'Destruction'}, // Physics
-        '4454292f573e2aa4a640c7150edacf08': {name: 'Caelus', path: 'Preservation'}, // Fire
-        'ImaginationCaelus': {name: 'Caelus', path: 'Harmony'}, // Imagination
+        '02eea7ac314d20d84540a77d6fe2825e': {name: 'Caelus', path: 'Destruction', attribute: 'Physical'},
+        '4454292f573e2aa4a640c7150edacf08': {name: 'Caelus', path: 'Preservation', attribute: 'Fire'},
+        '701b1bdb773f881ed59a446d06ca91b7': {name: 'Caelus', path: 'Harmony', attribute: 'Imaginary'},
         // Stelle
-        'f593aa0d1d51a6a5bc8223525bc1937f': {name: 'Stelle', path: 'Destruction'}, // Physics
-        'FireStelle': {name: 'Stelle', path: 'Preservation'}, // Fire
-        'ImaginationStelle': {name: 'Stelle', path: 'Harmony'}, // Imagination
+        'f593aa0d1d51a6a5bc8223525bc1937f': {name: 'Stelle', path: 'Destruction', attribute: 'Physical'},
+        'c816c8d66446eb4a9f0c44e4099d292c': {name: 'Stelle', path: 'Preservation', attribute: 'Fire'},
+        'ImaginationStelle': {name: 'Stelle', path: 'Harmony', attribute: 'Imaginary'},
     }
 
     const imagesWrapperClassName = 'c-hrd-sa-wrapper';
@@ -41,7 +75,7 @@ function getTrailblazer() {
             }
         }
     }
-    return {name: 'Stelle', path: 'Destruction'};
+    return {name: 'Stelle', path: 'Destruction', attribute: 'Physical'};
 }
 
 function extractAccountMeta() {
@@ -299,9 +333,9 @@ function extractRelicSet(imgSrc) {
     // Hunter
     const hunterSet = [
         // Head
-        "????",
+        "6395d9ec863504bd2fc615dd9cbf3c73",
         // Hands
-        "????",
+        "31bdcd73a1aea01d1f589af9a0211e07",
         // Body
         "b536a51704faab4e01375f749ea034df",
         // Foot
@@ -323,7 +357,7 @@ function extractRelicSet(imgSrc) {
         // Head
         "31e0d4408c4bffb134e295e7710f1773",
         // Hands
-        '????',
+        '7d63fc940e2adec54fec369946359bb1',
         // Body
         "e4887aec85eee27dc7c164bfe7dc4d52",
         // Foot
@@ -332,11 +366,11 @@ function extractRelicSet(imgSrc) {
     // Disciple
     const discipleSet = [
         // Head
-        '????',
+        'd2d8120bc38fa753803b5c2360932cf6',
         // Hands
         "9a0d6a128d075ee8d2559c3e20017d44",
         // Body
-        '????',
+        '8a767343c98412b9178e6184facee401',
         // Foot
         "33170305f9b2779c5adb99df75a5f5a1",
     ];
@@ -354,7 +388,7 @@ function extractRelicSet(imgSrc) {
     // Champion
     const championSet = [
         // Head
-        '????',
+        '1c0b810b64e76477f1d43dd9bc762fc1',
         // Hands
         '????',
         // Body
@@ -466,6 +500,13 @@ function extractRelicSet(imgSrc) {
         // Rope
         "57c29053d4558c9947af1840014d0aab",
     ];
+    // Planet Screwllum
+    const planetScrewllumAccessorySet = [
+        // Sphere
+        "9e22ad1c14e25f3d1cc2a39e5a2fe6e4",
+        // Rope
+        "585a9a0e953bd3d017ebc386408656b5",
+    ];
 
     const setsMap = {
         clothes: {
@@ -493,7 +534,6 @@ function extractRelicSet(imgSrc) {
             talia: {name: 'Talia: Kingdom of Banditry', hashes: taliaAccessorySet},
             salsotto: {name: 'Inert Salsotto', hashes: salsottoAccessorySet},
             vonwacq: {name: 'Sprightly Vonwacq', hashes: vonwacqAccessorySet},
-            // Celestial Differentiator
             belobog: {name: 'Belobog of the Architects', hashes: belobogAccessorySet},
             taikiyan: {name: 'Rutilant Arena', hashes: taikiyanAccessorySet},
             sigonia: {name: 'Sigonia, the Unclaimed Desolation', hashes: sigoniaAccessorySet},
@@ -502,6 +542,7 @@ function extractRelicSet(imgSrc) {
             insumousu: {name: 'Broken Keel', hashes: insumousuAccessorySet},
             glamoth: {name: 'Firmament Frontline: Glamoth', hashes: glamothAccessorySet},
             penacony: {name: 'Penacony, Land of the Dreams', hashes: penaconyAccessorySet},
+            planetScrewllum: {name: 'Celestial Differentiator', hashes: planetScrewllumAccessorySet},
         },
     }
 

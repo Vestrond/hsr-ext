@@ -5,6 +5,7 @@ body {
     width: 500px;
     margin: 0;
     padding: 0;
+    min-height: 40px;
 }
 
 a {
@@ -15,8 +16,14 @@ div {
     cursor: default;
 }
 
-#message {
+#data {
+    width: 100%;
     display: none;
+    color: white;
+}
+#message {
+    width: 100%;
+    /*display: none;*/
     color: white;
 }
 
@@ -653,4 +660,136 @@ button[type="reset"]:hover {
 .eidolon {
     height: 12px;
     width: 12px;
+}
+
+.listSettings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.sorts, .filters {
+    padding: 8px;
+    background: #313054;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 4px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.sorts {
+}
+
+.filters {
+}
+
+.sortsLine {
+    display: flex;
+    align-items: center;
+    color: white;
+    column-gap: 4px;
+}
+
+.sortItem {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    height: 20px;
+    padding: 0 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: black;
+
+    transition: background-color ease-in-out 0.2s;
+}
+.sortItem.selected {
+    background: royalblue;
+}
+.sortItem:hover {
+    background: royalblue;
+}
+
+.attributesFilters, .pathsFilters {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+
+.attributeBlock, .pathBlock {
+    cursor: pointer;
+    display: flex;
+}
+
+.attributeBlock .icon, .pathBlock .icon {
+    pointer-events: none;
+    height: 16px;
+    width: 16px;
+    padding: 2px;
+    background: black;
+    border-radius: 50%;
+
+    transition: background-color ease-in-out 0.2s;
+}
+.attributeBlock:hover .icon, .pathBlock:hover .icon {
+    background: gray;
+}
+.attributeBlock.selected .icon, .pathBlock.selected .icon {
+    background: royalblue;
+}
+
+.rarityFilters {
+    display: flex;
+    color: white;
+    column-gap: 8px;
+    justify-content: start;
+}
+
+.rarityFilterItem {
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+    height: 20px;
+    padding: 0 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: black;
+
+    transition: background-color ease-in-out 0.2s;
+}
+.rarityFilterItem.selected {
+    background: royalblue;
+}
+.rarityFilterItem:hover {
+    background: royalblue;
+}
+
+.rarityFilterItem .rarityStar {
+    color: gold;
+}
+
+.clearListSettings {
+    cursor: pointer;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: #313054;
+    border: 1px outset black;
+    border-radius: 8px;
+
+    transition: background-color ease-in-out 0.2s;
+}
+.clearListSettings:hover {
+    background: royalblue;
+}
+.clearListSettings:active {
+    border-style: inset;
 }
