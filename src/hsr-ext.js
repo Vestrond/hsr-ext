@@ -749,6 +749,11 @@ window.currentCharName = undefined;
 window.currentServerName = undefined;
 window.addEventListener("load", (event) => {
     setInterval(() => {
+        const uiLanguageClassName = 'mhy-hoyolab-lang-selector__current-lang';
+        if (document.querySelector(`.${uiLanguageClassName}`).textContent.trim() !== 'EN') {
+            return;
+        }
+
         const server = getServerName();
         const charNameElement = document.querySelector('.c-hrd-ri-name');
 
