@@ -350,7 +350,7 @@ function extractRelicSet(imgSrc) {
         // Body
         '0111e70a748ab038215832f3a7f77437',
         // Foot
-        '????',
+        '95b003736aaebaea072164258b072c10',
     ];
     // Passerby
     const passerbySet = [
@@ -750,7 +750,11 @@ window.currentServerName = undefined;
 window.addEventListener("load", (event) => {
     const intervalId = setInterval(() => {
         const uiLanguageClassName = 'mhy-hoyolab-lang-selector__current-lang';
-        if (document.querySelector(`.${uiLanguageClassName}`).textContent.trim() !== 'EN') {
+        const lang = document.querySelector(`.${uiLanguageClassName}`).textContent.trim();
+        if (!lang) {
+            return;
+        }
+        if (lang !== 'EN') {
             clearInterval(intervalId);
             return;
         }
