@@ -55,13 +55,13 @@ function storageGet(key) {
 function getTrailblazer() {
     const trailblazerMap = {
         // Caelus
-        '02eea7ac314d20d84540a77d6fe2825e': {name: 'Caelus', path: 'Destruction', attribute: 'Physical'},
-        '4454292f573e2aa4a640c7150edacf08': {name: 'Caelus', path: 'Preservation', attribute: 'Fire'},
-        '701b1bdb773f881ed59a446d06ca91b7': {name: 'Caelus', path: 'Harmony', attribute: 'Imaginary'},
+        '02eea7ac314d20d84540a77d6fe2825e': { name: 'Caelus', path: 'Destruction', attribute: 'Physical' },
+        '4454292f573e2aa4a640c7150edacf08': { name: 'Caelus', path: 'Preservation', attribute: 'Fire' },
+        '701b1bdb773f881ed59a446d06ca91b7': { name: 'Caelus', path: 'Harmony', attribute: 'Imaginary' },
         // Stelle
-        'f593aa0d1d51a6a5bc8223525bc1937f': {name: 'Stelle', path: 'Destruction', attribute: 'Physical'},
-        'c816c8d66446eb4a9f0c44e4099d292c': {name: 'Stelle', path: 'Preservation', attribute: 'Fire'},
-        'ImaginationStelle': {name: 'Stelle', path: 'Harmony', attribute: 'Imaginary'},
+        'f593aa0d1d51a6a5bc8223525bc1937f': { name: 'Stelle', path: 'Destruction', attribute: 'Physical' },
+        'c816c8d66446eb4a9f0c44e4099d292c': { name: 'Stelle', path: 'Preservation', attribute: 'Fire' },
+        'ImaginationStelle': { name: 'Stelle', path: 'Harmony', attribute: 'Imaginary' },
     }
 
     const imagesWrapperClassName = 'c-hrd-sa-wrapper';
@@ -71,11 +71,11 @@ function getTrailblazer() {
 
         for (const [key, characterInfo] of Object.entries(trailblazerMap)) {
             if (imgSrc.includes(key)) {
-                return {...characterInfo};
+                return { ...characterInfo };
             }
         }
     }
-    return {name: 'Stelle', path: 'Destruction', attribute: 'Physical'};
+    return { name: 'Stelle', path: 'Destruction', attribute: 'Physical' };
 }
 
 function extractAccountMeta() {
@@ -223,331 +223,343 @@ function extractRelicSet(imgSrc) {
     // Musketeer
     const musketeerSet = [
         // Head
-        '1c131a1272f5634a2b0a73c637894f6a',
+        'c0987a519a467222290be01ad9985ca3',
         // Hands
-        '1fe52ad40054091a96f0a51ac5cc3d41',
+        'a50ebe7e706d5786168e33aded131e94',
         // Body
-        'f9343d61b1c6bba4a2599337d8e0854c',
+        'b4b05b10c48c07eecebd75157901a8fe',
         // Foot
-        '4165ae60d05b4bf558c4a171452de030',
+        'ef21325ff1a7c68a3cf462573488f821',
     ];
     // Watchmaker
     const watchmakerSet = [
         // Head
-        '07c8963e8417fc8ab7c60618cb3188d9',
+        "4ff34aa3236fe0bc5fd4b0e489785454",
         // Hands
-        '5e81d1901faf2800fa1260f0cf3ade48',
+        "2934f431478e0267fedae92b60e5e1f4",
         // Body
-        'c02920ca6f5b1b71ab605b8f69f496d7',
+        "e555076d57660e7a1669b0a3de26710d",
         // Foot
-        '80d00dae4571f5a3b62a580f459c8017',
+        "e0f4c2e89f7a6bed2b187df337692493",
     ];
     // Thief
     const thiefSet = [
         // Head
-        "bbbe6c1e5904e0da9b8ee72c403fd789",
+        "1f38b8d397308cb57056d7f6dee2c6f4",
         // Hands
-        "99034e3c6ed73028e60e72df8c1b9a98",
+        "5e54ea18f949fde3292473b08e3a2a47",
         // Body
-        "85fb682c80f6599d4721b7ff3869ec2b",
+        "80690f4b05462c8d9582f5620623e560",
         // Foot
-        "b4fb65841d8214b1efffb2b530e5555b",
+        "7f9fa40993ccf581fcde1c4427934484",
     ];
     // Knight
     const knightSet = [
         // Head
-        "7b2d48b104b36e250fe0d436c4b6fa32",
+        "e330a017307d55fb849a16851db66b58",
         // Hands
-        "15659626cc6e06145afb314d729fa2e2",
+        "????",
         // Body
-        "43370ddbc7f099f72698373eda2bd853",
+        "????",
         // Foot
-        "7765258662c113fa7b0df8605c96bd55",
+        "1d91c0384dc7e544a71d4ae65cc3b6e4",
     ];
     // Eagle
     const eagleSet = [
         // Head
-        "3cca4672ee1595ea85e694223b12640b",
+        "????",
         // Hands
-        "a34ac649757ccf5a501c8ddd57dfb8a1",
+        "????",
         // Body
-        "a7e2c41eefd7ae28273d274632a2b4e3",
+        "153ae62aa91c691ea1b010fce8ec459b",
         // Foot
-        "66954efffb224f98df46fd06db222c12",
+        "????",
     ];
     // Band
     const bandSet = [
         // Head
-        "435674a13ebe6c1f391266fa274a2b3a",
+        "????",
         // Hands
-        "1c317e4386ef240342bbbb88c2206eb2",
+        "????",
         // Body
-        "49120d90ba66127c0b96c78f76d69b69",
+        "????",
         // Foot
-        "6fe37ab2aea063aced02e5e61f69b55c",
+        "????",
     ];
     // Prisoner
     const prisonerSet = [
         // Head
-        "3f56c8b44eab706bbfa20277b1d24965",
+        "d3cb4c37529831cc4d18333fc5fc9afd",
         // Hands
-        "535d5c2d35b43831d4e92763518ac8e4",
+        "b4ea623f35a455928c0f8c7df2ddc389",
         // Body
-        "463ee0c54d3da745735769b5ffb61f79",
+        "1a717379f24ef3184ba5dffbfc833303",
         // Foot
-        "7b857707a49b1ec00aca0de2ae23b916",
+        "b45be0705accde692be795dcbb5c320d",
     ];
     // Genius
     const geniusSet = [
         // Head
-        "4a74fe65c7fb4faeab1e340fe4da040b",
+        "c4d481ba6ca1d1c0869a78e9f4191e6d",
         // Hands
-        "4906179a34340a6a783f65ee6cfbfe88",
+        "68bde5465f901053d0d14dbd3d61473a",
         // Body
-        "45643d2a89845272e3e49b639b0a3043",
+        "9d0e5b46591fadd7f8f0031c5fbf0acc",
         // Foot
-        "2c0a9279295796f32a3fec1742d7dfcb",
+        "fc997a823f758328184eda3f670fed7a",
     ];
     // Messenger
     const messengerSet = [
         // Head
-        "67eead241b97d3d866b2559ccb3a13ac",
+        "9ebf9dd5d0a29c31863bb121bc2e0eae",
         // Hands
-        "ff94f576433175003fa70b4a3250c757",
+        "8bb3a83c3ae7cef2ff56ff37c68df709",
         // Body
-        "f2e85db095202eeb2969f5cdca50fef4",
+        "cf3da71040cddaa22138b12451fb97e9",
         // Foot
-        "27878de0890fb56c277dc93d5bf735c8",
+        "9d1b47c1a77d7f51dd5f23fca29cfa6c",
     ];
     // Firesmith
     const firesmithSet = [
         // Head
-        "f4d29fc0d426ec39c3a0d33fd51afda6",
+        "2c983af6a1551baa02baa45cd65b1f9e",
         // Hands
-        "f7327ece7aad15d4d6d25e3ca962f354",
+        "????",
         // Body
-        "3cfe5dd9aeacc9294e9d993ee57b17aa",
+        "5fbfbcfa7b7d39f4e8a71f13a614103d",
         // Foot
-        "e8a2048c335a241f5c037fa64ac9d57c",
+        "e3dfb3c56fdbed31af85ba9c6cca46ac",
     ];
     // Hunter
     const hunterSet = [
         // Head
-        "6395d9ec863504bd2fc615dd9cbf3c73",
+        "22340d41e3118708f04b11899cf202d7",
         // Hands
-        "31bdcd73a1aea01d1f589af9a0211e07",
+        "????",
         // Body
-        "b536a51704faab4e01375f749ea034df",
+        "3060d1bd7d7a95dc231a01b739e90680",
         // Foot
-        "f3202a0bf01e72fad7952a97da6dcb3a",
+        "4b62823b69817f1290e20b44e82a2f6e",
     ];
     // Grand Duke
     const grandDukeSet = [
         // Head
-        "585ec00aea32bd8568460a027d8bffe4",
+        "b64350f8478ee8640e1162e5b5854fc0",
         // Hands
-        "db478b13b9cd1ce2b06a677e8e04592b",
+        "834a4a0535c85ea563b71b1ad4b518f6",
         // Body
-        '0111e70a748ab038215832f3a7f77437',
+        "560a30d73f7f712247f5068925cf62c0",
         // Foot
-        '95b003736aaebaea072164258b072c10',
+        "85ca3a88fabb7a02a1497e54932931d1",
     ];
     // Passerby
     const passerbySet = [
         // Head
-        "31e0d4408c4bffb134e295e7710f1773",
+        "????",
         // Hands
-        '7d63fc940e2adec54fec369946359bb1',
+        "9e5e797613fb2ca19145b1494d92c553",
         // Body
-        "e4887aec85eee27dc7c164bfe7dc4d52",
+        "????",
         // Foot
         '????',
     ];
     // Disciple
     const discipleSet = [
         // Head
-        'd2d8120bc38fa753803b5c2360932cf6',
+        "3b00f87124d037a6a99c5ea1e673b7d0",
         // Hands
-        "9a0d6a128d075ee8d2559c3e20017d44",
+        "95313b9f43b8a0b0c33302021f61c4a7",
         // Body
-        '8a767343c98412b9178e6184facee401',
+        "d37a0420f76b4308743531cf7abab4ce",
         // Foot
-        "33170305f9b2779c5adb99df75a5f5a1",
+        "cc588a2802e006fd170fc43c93f4f47d",
+    ];
+    // Guard
+    const guardSet = [
+        // Head
+        "6b570d518c6fa60e4e824958a92442a5",
+        // Hands
+        "b90000c24b5cb79e822ab13cb1bb2fe9",
+        // Body
+        "3b57f2cf3695bb102c5bfc82ff603d6b",
+        // Foot
+        "81dd31452203d0379c4b08e84d92bb9d",
     ];
     // Wastelander
     const wastelanderSet = [
         // Head
-        '448da9b999e9c782a2115edc7b8045e0',
+        '????',
         // Hands
-        '????',
+        "05b984e639e7398ed502827309c28bcc",
         // Body
-        '????',
+        'cb651e2eb6aa64d2049e4d4416f20f43',
         // Foot
-        '63aabd362eb7bd68e498ae01a29120d2',
+        "f5df38839b346290fa8a798f48492be2",
     ];
     // Champion
     const championSet = [
         // Head
-        '1c0b810b64e76477f1d43dd9bc762fc1',
+        '????',
         // Hands
         '????',
         // Body
-        '64e226fbc6823cfac99f3b3fa608ad0c',
+        "78ea5763adc82de7b5beceea414d5cce",
         // Foot
-        'fbe41043cab1929a5acc5870c6d80888',
+        '????',
     ];
     // Pioneer
     const pioneerSet = [
         // Head
-        "c8d713fbf8b78f18bbeed84dd857144f",
+        "27f5c44c7a914c84571e1f624964d5b9",
         // Hands
-        "e95c45b797450c7a5dbb7382b4e63748",
+        "cdea04880128862d1b77ee198f2b4b58",
         // Body
-        "2d29c77a827f9a8ced17f8184d5c4d0b",
+        "c704881ca213c957081a0caf767d0674",
         // Foot
-        "f0fc4465922412eb5ac84278568ab95b",
+        "ec89ead3306872d66cc8bc2c0f6ba205",
     ];
 
     // Accessories
     // Izumo
     const izumoAccessorySet = [
         // Sphere
-        "8f5de19383f0b3a11869ba27462f9f82",
+        "7f54ffce62dc39d1f8ab5c6a5119315e",
         // Rope
-        "c817bb6015f8c62761728f77c6e3bcab",
+        "0b53d7e7b7bddd9d61e909f42ddfb82b",
     ];
     // The Xianzhou Luofu's
     const theXianzhouLoufuAccessorySet = [
         // Sphere
-        'c887fc6bc0b28b8b8c2891a0e819633f',
+        "c7ad8afccc845fde761569a5a33048e3",
         // Rope
-        '15b07ce198f55e336309718d03bde46a',
+        "8ab7909a9a8e67968dbce2fd5797cb34",
     ];
     // Talia
     const taliaAccessorySet = [
         // Sphere
-        '73f4f027892c4a630e2753f39030270f',
+        '????',
         // Rope
-        '1dbc2bff94442bade38d3befcfebde8d',
+        '????',
     ];
     // Salsotto
     const salsottoAccessorySet = [
         // Sphere
-        "79a39be3927eff5d083a86c0e55d6b88",
+        "6549d054a354f642b4e593762050a4b1",
         // Rope
-        "d265ea91af67885e4be71023d14a741b",
+        "283fee1ca8499da6e8de209cd98c2c87",
     ];
     // Vonwacq
     const vonwacqAccessorySet = [
         // Sphere
-        "75d92d23901e92c7812a52e243e03c62",
+        '????',
         // Rope
-        "a949d8c1583ec2fabf76ac7c480877e7"
+        "6c272f6d5f14b0990e21b3f7753ecc48",
     ];
     // Belobog
     const belobogAccessorySet = [
         // Sphere
-        "9af92e3cac9a963a956815159dc48f36",
+        "4ec46797712293ab953ff0daf0d7b861",
         // Rope
-        "28a4090515cef0b829b89261cfc6a1bd",
+        "8c678390b130e15e8d8043a0ae252f54",
     ];
     // Taikiyan
     const taikiyanAccessorySet = [
         // Sphere
-        "eced8972bb9eef40d598c39caa2bcc88",
+        "ad07460e3dc559dbd4ffb42713ed142a",
         // Rope
-        "3932cfc0723ac2726aef393c3a6e23ac",
+        "93132a48e1f1d93cdd591de94cac017e",
     ];
     // Sigonia
     const sigoniaAccessorySet = [
         // Sphere
-        "f12fa1a7bc4df71496cac94dd604f70c",
+        "36fadba83a0117ba00bc5f1c90f5f3a8",
         // Rope
-        "1bc30be3ed1f96007a32238f37036c33",
+        "66d95973ead12077ec3d6f90fb1149c3",
     ];
     // The IPC
     const theIPCAccessorySet = [
         // Sphere
-        "99f7d4119127b9986a057c91610235b4",
+        "????",
         // Rope
-        "c251a33c85c1a7c3effe3561850674c5",
+        "????",
     ];
     // Herta
     const hertaAccessorySet = [
         // Sphere
-        "76923cbaf87904bc46b0f12e7fa1a440",
+        "046bb6c4e21bff57379671fed17249e8",
         // Rope
-        "0c047f309a1395314b9752eb6adb4ab4",
+        "23395a80a4c423f5b36fe81448016b59",
     ];
     // Insumousu
     const insumousuAccessorySet = [
         // Sphere
-        "167ea86176279b67aa1c204dab13fc74",
+        "9eb50d3b1d233b1dfb2c92cc1dc59a69",
         // Rope
-        "96c7c279a12364a9c7d4437e4469802a",
+        "b85282d0ec6151ecbd64b9386ad64bc1",
     ];
     // Glamoth
     const glamothAccessorySet = [
         // Sphere
-        "666421e9bb2759b6b9d0c8ee0274a320",
+        "6e00c71ce971d3a842791ca447be1040",
         // Rope
-        "f0604c51d18ed4d6224a1c38b7f3bf27",
+        "cdb0921afd3fde063dfdff51407eb5f2",
     ];
     // Penacony
     const penaconyAccessorySet = [
         // Sphere
-        "3c46bed41e55e2553df1cf7a2262bb42",
+        "33171db7f02aaecf125e1af449b54607",
         // Rope
-        "57c29053d4558c9947af1840014d0aab",
+        "7d035746917a583b7e502ea1a76cde87",
     ];
     // Planet Screwllum
     const planetScrewllumAccessorySet = [
         // Sphere
-        "9e22ad1c14e25f3d1cc2a39e5a2fe6e4",
+        "????",
         // Rope
-        "585a9a0e953bd3d017ebc386408656b5",
+        "????",
     ];
 
     const setsMap = {
         clothes: {
-            musketeer: {name: "Musketeer of Wild Wheat", hashes: musketeerSet},
-            watchmaker: {name: "Watchmaker, Master of Dream Machinations", hashes: watchmakerSet},
-            thief: {name: "Thief of Shooting Meteor", hashes: thiefSet},
-            knight: {name: "Knight of Purity Palace", hashes: knightSet},
-            eagle: {name: "Eagle of Twilight Line", hashes: eagleSet},
-            band: {name: "Band of Sizzling Thunder", hashes: bandSet},
-            prisoner: {name: "Prisoner in Deep Confinement", hashes: prisonerSet},
-            genius: {name: "Genius of Brilliant Stars", hashes: geniusSet},
-            messenger: {name: "Messenger Traversing Hackerspace", hashes: messengerSet},
-            firesmith: {name: "Firesmith of Lava-Forging", hashes: firesmithSet},
-            hunter: {name: "Hunter of Glacial Forest", hashes: hunterSet},
-            grandDuke: {name: "The Ashblazing Grand Duke", hashes: grandDukeSet},
-            passerby: {name: "Passerby of Wandering Cloud", hashes: passerbySet},
-            disciple: {name: "Longevous Disciple", hashes: discipleSet},
-            wastelander: {name: "Wastelander of Banditry Desert", hashes: wastelanderSet},
-            champion: {name: "Champion of Streetwise Boxing", hashes: championSet},
-            pioneer: {name: "Pioneer Diver of Dead Waters", hashes: pioneerSet},
+            guard: { name: "Guard of Wuthering Snow", hashes: guardSet },
+            musketeer: { name: "Musketeer of Wild Wheat", hashes: musketeerSet },
+            watchmaker: { name: "Watchmaker, Master of Dream Machinations", hashes: watchmakerSet },
+            thief: { name: "Thief of Shooting Meteor", hashes: thiefSet },
+            knight: { name: "Knight of Purity Palace", hashes: knightSet },
+            eagle: { name: "Eagle of Twilight Line", hashes: eagleSet },
+            band: { name: "Band of Sizzling Thunder", hashes: bandSet },
+            prisoner: { name: "Prisoner in Deep Confinement", hashes: prisonerSet },
+            genius: { name: "Genius of Brilliant Stars", hashes: geniusSet },
+            messenger: { name: "Messenger Traversing Hackerspace", hashes: messengerSet },
+            firesmith: { name: "Firesmith of Lava-Forging", hashes: firesmithSet },
+            hunter: { name: "Hunter of Glacial Forest", hashes: hunterSet },
+            grandDuke: { name: "The Ashblazing Grand Duke", hashes: grandDukeSet },
+            passerby: { name: "Passerby of Wandering Cloud", hashes: passerbySet },
+            disciple: { name: "Longevous Disciple", hashes: discipleSet },
+            wastelander: { name: "Wastelander of Banditry Desert", hashes: wastelanderSet },
+            champion: { name: "Champion of Streetwise Boxing", hashes: championSet },
+            pioneer: { name: "Pioneer Diver of Dead Waters", hashes: pioneerSet },
         },
         accessories: {
-            izumo: {name: 'Izumo Gensei and Takama Divine Realm', hashes: izumoAccessorySet},
-            theXianzhouLoufu: {name: "Fleet of the Ageless", hashes: theXianzhouLoufuAccessorySet},
-            talia: {name: 'Talia: Kingdom of Banditry', hashes: taliaAccessorySet},
-            salsotto: {name: 'Inert Salsotto', hashes: salsottoAccessorySet},
-            vonwacq: {name: 'Sprightly Vonwacq', hashes: vonwacqAccessorySet},
-            belobog: {name: 'Belobog of the Architects', hashes: belobogAccessorySet},
-            taikiyan: {name: 'Rutilant Arena', hashes: taikiyanAccessorySet},
-            sigonia: {name: 'Sigonia, the Unclaimed Desolation', hashes: sigoniaAccessorySet},
-            theIpc: {name: 'Pan-Cosmic Commercial Enterprise', hashes: theIPCAccessorySet},
-            herta: {name: 'Space Sealing Station', hashes: hertaAccessorySet},
-            insumousu: {name: 'Broken Keel', hashes: insumousuAccessorySet},
-            glamoth: {name: 'Firmament Frontline: Glamoth', hashes: glamothAccessorySet},
-            penacony: {name: 'Penacony, Land of the Dreams', hashes: penaconyAccessorySet},
-            planetScrewllum: {name: 'Celestial Differentiator', hashes: planetScrewllumAccessorySet},
+            izumo: { name: 'Izumo Gensei and Takama Divine Realm', hashes: izumoAccessorySet },
+            theXianzhouLoufu: { name: "Fleet of the Ageless", hashes: theXianzhouLoufuAccessorySet },
+            talia: { name: 'Talia: Kingdom of Banditry', hashes: taliaAccessorySet },
+            salsotto: { name: 'Inert Salsotto', hashes: salsottoAccessorySet },
+            vonwacq: { name: 'Sprightly Vonwacq', hashes: vonwacqAccessorySet },
+            belobog: { name: 'Belobog of the Architects', hashes: belobogAccessorySet },
+            taikiyan: { name: 'Rutilant Arena', hashes: taikiyanAccessorySet },
+            sigonia: { name: 'Sigonia, the Unclaimed Desolation', hashes: sigoniaAccessorySet },
+            theIpc: { name: 'Pan-Cosmic Commercial Enterprise', hashes: theIPCAccessorySet },
+            herta: { name: 'Space Sealing Station', hashes: hertaAccessorySet },
+            insumousu: { name: 'Broken Keel', hashes: insumousuAccessorySet },
+            glamoth: { name: 'Firmament Frontline: Glamoth', hashes: glamothAccessorySet },
+            penacony: { name: 'Penacony, Land of the Dreams', hashes: penaconyAccessorySet },
+            planetScrewllum: { name: 'Celestial Differentiator', hashes: planetScrewllumAccessorySet },
         },
     }
 
-    const imageHash = imgSrc.replace('https://act-webstatic.hoyoverse.com/darkmatter/hkrpg/prod_gf_cn/item_icon_uea52b/', '').split('.png')[0];
-    for (const setEntry of Object.values({...setsMap.clothes, ...setsMap.accessories})) {
+    const imageHash = imgSrc.replace('https://act-webstatic.hoyoverse.com/darkmatter/hkrpg/prod_gf_cn/item_icon_u3294b/', '').split('.png')[0];
+    for (const setEntry of Object.values({ ...setsMap.clothes, ...setsMap.accessories })) {
         if (setEntry.hashes.includes(imageHash)) {
             return setEntry.name;
         }
@@ -741,7 +753,7 @@ function badFilter() {
             }
         }
 
-        aBrowser().storage.local.set({'hsr-ext': data});
+        aBrowser().storage.local.set({ 'hsr-ext': data });
     });
 }
 
@@ -774,15 +786,15 @@ window.addEventListener("load", (event) => {
 
             storageGet('hsr-ext')
                 .then((allData) => {
-                    const data = allData['hsr-ext'] || {servers: {}, currentServer: server};
+                    const data = allData['hsr-ext'] || { servers: {}, currentServer: server };
                     const servers = data.servers;
                     if (server in servers) {
-                        servers[server] = {...servers[server], ...extractAccountMeta()};
+                        servers[server] = { ...servers[server], ...extractAccountMeta() };
 
                         if ('characters' in servers[server]) {
                             servers[server].characters[charName] = extractAllElements();
                         } else {
-                            servers[server].characters = {[charName]: extractAllElements()};
+                            servers[server].characters = { [charName]: extractAllElements() };
                         }
                     } else {
                         servers[server] = {
@@ -793,7 +805,7 @@ window.addEventListener("load", (event) => {
                         };
                     }
 
-                    aBrowser().storage.local.set({'hsr-ext': data})
+                    aBrowser().storage.local.set({ 'hsr-ext': data })
                         // .then(() => {
                         //     badFilter();
                         // })
