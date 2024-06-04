@@ -100,14 +100,61 @@ node build.js
 
 If you need to collect hashes of relics from the current page, you can use the following script in the browser's console:
 
-```javascript
-'"' + [...document.querySelectorAll(".c-hrdrs-btm .c-hrd-dcp-ref img")]
-    .map((img) => 
-        img.attributes.getNamedItem('src').value
-            .replace('https://act-webstatic.hoyoverse.com/darkmatter/hkrpg/prod_gf_cn/item_icon_uea52b/','')
-            .split('.png')[0])
-    .join('",\n"') + '",'
-```
+1. After the page loads, declare the hash calculation function in the console:
+    ```js
+    async function getImageHash(src) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.src = src;
+    
+            img.onload = async function() {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                context.drawImage(img, 0, 0);
+    
+                try {
+                    const imageData = context.getImageData(0, 0, img.width, img.height).data;
+                    let bs = 0;
+                    let ws = 0;
+                    let ts = 0;
+    
+                    for (let i = 0; i < imageData.length; i += 4) {
+                        const r = imageData[i];
+                        const g = imageData[i + 1];
+                        const b = imageData[i + 2];
+                        const a = imageData[i + 3];
+                        if (r === 0 && g === 0 && b === 0 && a === 255) {
+                            bs += 1;
+                        } else if (r === 255 && g === 255 && b === 255 && a === 255) {
+                            ws += 1;
+                        } else if (a === 0) {
+                            ts += 1;
+                        }
+                    }
+                    resolve(`${ws}.${bs}.${ts}`);
+                } catch (e) {
+                    reject(e);
+                } finally {
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                    canvas.remove();
+                }
+            };
+    
+            img.onerror = reject;
+        });
+    }
+    ```
+
+2. Gather information from the required characters by opening the character page and running the following code in the console:
+    ```js
+    Promise.all([...document.querySelectorAll(".c-hrdrs-btm .c-hrd-dcp-ref img")].map(
+            (img) => getImageHash(img.attributes.getNamedItem('src').value))
+    ).then(r => console.log('"' + r.join('",\n"') + '",' ))
+    ```
+    Result's order: **Head**, **Hands**, **Body**, **Feet**, **Sphere**, **Rope**.
 
 
 ## Contributing

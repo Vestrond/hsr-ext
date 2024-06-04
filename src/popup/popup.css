@@ -24,7 +24,7 @@ div {
 #message {
     width: 100%;
     /*display: none;*/
-    color: white;
+    color: wheat;
 }
 
 .brand {
@@ -792,4 +792,51 @@ button[type="reset"]:hover {
 }
 .clearListSettings:active {
     border-style: inset;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+    color: grey;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 8px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+img {
+    pointer-events: none;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.noData {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    justify-content: center;
+    align-items: center;
+    color: #ffffffa6;
+    margin: 32px 0;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.noDataImg {
+    height: 96px;
 }
