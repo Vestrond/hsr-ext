@@ -260,6 +260,14 @@ const tinyDB = {
                 '0.1.7473': 'passerby',
                 // Foot
                 '3.2.8668': 'passerby',
+                // Head
+                "1.0.7349": 'firesmith',
+                // Hands
+                "0.0.7354": 'firesmith',
+                // Body
+                "0.0.6965": 'firesmith',
+                // Foot
+                "2.0.8244": 'firesmith',
             },
             accessories: {
                 // Sphere
@@ -356,7 +364,7 @@ async function extractRelicSet(iconUrl) {
         const setKey = tinyDB.relics.hashToKey.accessories[iconHash];
         return tinyDB.relics.keyedSets.accessories[setKey].name;
     } else {
-        throw new Error(`Cannot extract Relic Set for ${iconUrl}`);
+        throw new Error(`Cannot extract Relic Set for ${iconUrl} (${iconHash})`);
     }
 }
 
@@ -1063,8 +1071,17 @@ async function finalizeCalculations() {
     }
 }
 
+function startLoadingAnimation() {
+    document.getElementById('loading-animation').style.display = 'flex';
+}
+function finishLoadingAnimation() {
+    document.getElementById('loading-animation').style.display = 'none';
+}
+
 function listenForClicks() {
+    startLoadingAnimation();
     finalizeCalculations().then(() => {
+        finishLoadingAnimation();
         rerender();
     });
 

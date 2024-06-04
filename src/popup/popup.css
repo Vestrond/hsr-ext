@@ -27,6 +27,30 @@ div {
     color: wheat;
 }
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#loading-animation {
+    display: none;
+    margin: 24px 0;
+    width: 100%;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.loading-animation-svg {
+    animation: spin 2s linear infinite;
+}
+
 .brand {
     font-weight: bold;
     color: #ffc870;
@@ -345,6 +369,7 @@ button[type="reset"]:hover {
 }
 
 .coneImg {
+    pointer-events: auto;
     position: absolute;
     right: -14px;
     height: 48px;
