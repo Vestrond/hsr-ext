@@ -22,6 +22,11 @@ function storageSet(key, data) {
     return aBrowser().storage.local.set({[key]: data});
 }
 
+// hello -> Hello
+function capitalize(string) {
+    return string ? string[0].toUpperCase() + string.slice(1) : '';
+}
+
 // [...document.querySelectorAll('.c-hrdr-title > span')].map(e => e.textContent.trim()).join('\n')
 // TODO: Add translations
 // const translator = {
@@ -294,6 +299,13 @@ function checkAvatarAvailability() {
     return !!avatarElement;
 }
 
+function getCurrentCharacterKey() {
+    if (window.currentCharName === 'Trailblazer') {
+        return `Trailblazer${capitalize(window.currentCharPath)}`;
+    }
+    return window.currentCharName;
+}
+
 function extractAllElements() {
     const characteristicsOverallContainer = 'c-hrdcs';
     const itemsContainerClassName = 'c-hrdcs-btm-half';
@@ -304,17 +316,18 @@ function extractAllElements() {
     const items = document.querySelectorAll(`.${characteristicsOverallContainer} .${itemsContainerClassName} > .${itemsClassName}`);
 
     const data = {};
+    data.key = getCurrentCharacterKey();
+    data.name = window.currentCharName;
     data.avatar = document.querySelector(`.${avatarContainerClassName}[selected='selected'] img`).attributes.getNamedItem('src').value;
-    const battleInfo = extractCharacterBattleInfo();
-    data.attribute = battleInfo.attribute;
-    data.path = battleInfo.path;
+    data.attribute = window.currentCharAttr;
+    data.path = window.currentCharPath;
     data.rarity = Number(document.querySelector(`.${avatarContainerClassName}[selected='selected']`).attributes.getNamedItem('rarity').value);
     data.lvl = Number(document.querySelector(`.${lvlClassName}`).textContent.trim().replace('Lv. ', ''));
     data.cone = extractCone();
     data.relics = extractRelics();
-    data.characteristics = {};
     data.eidolons = extractEidolon();
     data.traces = extractTraces();
+    data.characteristics = {};
 
     items.forEach((item) => {
         const attrNameClassName = 'c-hrdcs-name';
@@ -407,6 +420,8 @@ function getServerName() {
 // }
 
 window.currentCharName = undefined;
+window.currentCharPath = undefined;
+window.currentCharAttr = undefined;
 window.currentServerName = undefined;
 window.addEventListener("load", (event) => {
     const intervalId = setInterval(() => {
@@ -431,10 +446,18 @@ window.addEventListener("load", (event) => {
             return;
         }
 
-        const charName = charNameElement.textContent;
+        const charName = charNameElement.textContent.trim();
+        const { attribute: charAttr, path: charPath } = extractCharacterBattleInfo();
 
-        if (charName !== window.currentCharName || server !== window.currentServerName) {
+        if (
+          charName !== window.currentCharName ||
+          charPath !== window.currentCharPath ||
+          charAttr !== window.currentCharAttr ||
+          server !== window.currentServerName
+        ) {
             window.currentCharName = charName;
+            window.currentCharPath = charPath;
+            window.currentCharAttr = charAttr;
             window.currentServerName = server;
 
             storageGet('hsr-ext')
@@ -444,20 +467,21 @@ window.addEventListener("load", (event) => {
 
                     const accountMeta = extractAccountMeta();
                     const allElements = extractAllElements();
+                    const charKey = getCurrentCharacterKey();
 
                     if (server in servers) {
                         servers[server] = {...servers[server], ...accountMeta};
 
                         if ('characters' in servers[server]) {
-                            servers[server].characters[charName] = allElements;
+                            servers[server].characters[charKey] = allElements;
                         } else {
-                            servers[server].characters = {[charName]: allElements};
+                            servers[server].characters = {[charKey]: allElements};
                         }
                     } else {
                         servers[server] = {
                             ...accountMeta,
                             characters: {
-                                [charName]: allElements,
+                                [charKey]: allElements,
                             },
                         };
                     }

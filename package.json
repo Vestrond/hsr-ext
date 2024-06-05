@@ -1,6 +1,6 @@
 {
   "name": "hsr-ext",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "build.js",
   "author": "Vestrond",
   "license": "MIT",

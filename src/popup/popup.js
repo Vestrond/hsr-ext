@@ -432,7 +432,7 @@ function genScanDataForUser(callback) {
         const cones = [];
         const characters = [];
         const relics = [];
-        Object.entries(currentServer.characters).forEach(([characterName, characterData], index) => {
+        Object.entries(currentServer.characters).forEach(([characterKey, characterData], index) => {
             const cone = characterData.cone;
             if (cone !== undefined) {
                 cones.push({
@@ -440,14 +440,14 @@ function genScanDataForUser(callback) {
                     'level': cone.lvl,
                     'ascension': index + 1,
                     'superimposition': cone.rank,
-                    'location': characterName,
+                    'location': characterKey,
                     'lock': true,
                     '_id': `light_cone_${index + 1}`,
                 });
             }
 
             characters.push({
-                'key': characterName,
+                'key': characterKey,
                 'level': characterData.lvl,
                 'ascension': index + 1,
                 'eidolon': characterData.eidolons.amount || 0,
@@ -468,7 +468,7 @@ function genScanDataForUser(callback) {
                         'key': ss.key,
                         'value': ss.pureValue,
                     })),
-                    'location': characterName,
+                    'location': characterKey,
                     'lock': false,
                     'discard': false,
                     '_id': `relic_${relicId}`,
@@ -646,7 +646,7 @@ function coneAsHTML(data) {
     `;
 }
 
-function characterAsHtml(charName, data) {
+function characterAsHtml(charKey, data) {
     const characteristicsLines = [];
     for (const [characteristicName, characteristic] of Object.entries(data.characteristics)) {
         characteristicsLines.push(characteristicAsHTML(characteristicName, characteristic));
@@ -777,7 +777,7 @@ function characterAsHtml(charName, data) {
             </div>
             <div class="vert-8">
                 <div class="hor-4">
-                    <div class="characterName">${s(charName)}</div>
+                    <div class="characterName">${s(data.name)}</div>
                     <div class="characterLvl">${n(data.lvl)}</div>               
                 </div>
                 ${battleInfo}
@@ -899,7 +899,7 @@ function rerender() {
         if (Object.keys(data).length === 0 || Object.keys(data.servers).length === 0) {
             document.getElementById('popup-content').innerHTML = `
 <div class="noData">
-    <img class="noDataImg" src="https://act.hoyolab.com/app/community-game-records-sea/rpg/images/empty-m.1db234d8.png" alt="-" />
+    <img class="noDataImg" src="/icons/empty.png" alt="-" />
     <div>No data found</div>
 </div>`;
             return;
@@ -935,7 +935,7 @@ function rerender() {
                 });
             }
 
-            for (const [charName, charData] of characters) {
+            for (const [charKey, charData] of characters) {
                 if (
                     (window.filters.attributes.length > 0 && !window.filters.attributes.includes(charData.attribute))
                     || (window.filters.paths.length > 0 && !window.filters.paths.includes(charData.path))
@@ -944,14 +944,14 @@ function rerender() {
                     continue;
                 }
 
-                if (serverName in window.cache && charName in window.cache[serverName]) {
-                    innerLines.push(window.cache[serverName][charName]);
+                if (serverName in window.cache && charKey in window.cache[serverName]) {
+                    innerLines.push(window.cache[serverName][charKey]);
                 } else {
-                    const innerLine = characterAsHtml(charName, charData);
+                    const innerLine = characterAsHtml(charKey, charData);
                     if (serverName in window.cache) {
-                        window.cache[serverName][charName] = innerLine;
+                        window.cache[serverName][charKey] = innerLine;
                     } else {
-                        window.cache[serverName] = { [charName]: innerLine };
+                        window.cache[serverName] = { [charKey]: innerLine };
                     }
                     innerLines.push(innerLine);
                 }
