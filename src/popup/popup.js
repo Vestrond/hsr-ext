@@ -336,11 +336,11 @@ async function getTrailblazerFromUrls(avatarUrls) {
         // Caelus
         '105.10.9084': tinyDB.trailblazer.caelus.physical,
         '0.1.10225': tinyDB.trailblazer.caelus.fire,
-        '??caelus.imaginary??': tinyDB.trailblazer.caelus.imaginary,
+        '80.8.4661': tinyDB.trailblazer.caelus.imaginary,
         // Stelle
         '158.6.6001': tinyDB.trailblazer.stelle.physical,
-        '??stelle.fire??': tinyDB.trailblazer.stelle.fire,
-        '??stelle.imaginary??': tinyDB.trailblazer.stelle.imaginary,
+        '7.0.5076': tinyDB.trailblazer.stelle.fire,
+        '63.2.4587': tinyDB.trailblazer.stelle.imaginary,
     };
 
     for (let avatarUrl of avatarUrls) {
@@ -523,6 +523,7 @@ function downloadData() {
 
 function clearData() {
     storageClear().then(() => {
+        finishLoadingAnimation();
         rerender();
     }).catch(error => {
         document.getElementById('popup-content').innerHTML = JSON.stringify(error);
